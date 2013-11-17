@@ -1,25 +1,29 @@
 /*
-  Blink
-  Turns on an LED on for one second, then off for one second, repeatedly.
- 
+  Fade In Fade OUT
+  Increase and decrease intensity of an LED 
+  This example code is part of the AUG-ROMA Arduino Course
   This example code is in the public domain.
+  Author Marco Loche
  */
- 
-// Pin 13 has an LED connected on most Arduino boards.
-// give it a name:
-const int led = 13;
-int pause;
-// the setup routine runs once when you press reset:
+
+// Pin 9 is a PWM PIN
+const int led = 9;
+// Define the value of brightness of the led
+int intensity = 0;    
+
 void setup() {                
-  // initialize the digital pin as an output.
   pinMode(led, OUTPUT);     
 }
 
-// the loop routine runs over and over again forever:
 void loop() {
-  digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(pause);               // wait for a second
-  digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-  delay(pause);               // wait for a second
-  pause = pause + 100;
+  //Fade in
+  for (intensity = 0 ; intensity <= 255; intensity++) { 
+    analogWrite(led, intensity);
+    delay(10);                     
+  } 
+  // Fade out
+  for(intensity = 255 ; intensity > 0; intensity--) {
+    analogWrite(led, intensity);
+    delay(10);                      
+  } 
 }
