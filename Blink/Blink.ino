@@ -19,11 +19,11 @@ void loop() {
   //Fade in
   for (intensity = 0 ; intensity <= 255; intensity++) { 
     analogWrite(led, intensity);
-    delay(10);                     
+    delay(20);                     
   } 
   // Fade out
-  for(intensity = 255 ; intensity > 0; intensity--) {
+  for(intensity = 255 ; intensity >= 0; intensity--) {
     analogWrite(led, intensity);
-    delay(10);                      
+    delay(20);                      
   } 
 }
