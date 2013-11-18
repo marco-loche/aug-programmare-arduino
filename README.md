@@ -12,3 +12,6 @@ fade in/out with for loop
 
 ## 04 if else
 switch led off when button is pressed
+
+## 05 funzioni
+fade example (03) but now with functions
