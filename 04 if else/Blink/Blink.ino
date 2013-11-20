@@ -1,54 +1,40 @@
 /*
-  Button
- 
- Turns on and off a light emitting diode(LED) connected to digital  
- pin 13, when pressing a pushbutton attached to pin 7. 
- 
- 
- The circuit:
- * LED attached from pin 13 to ground 
- * pushbutton attached to pin 2 from +5V
- * 10K resistor attached to pin 2 from ground
- 
- * Note: on most Arduinos there is already an LED on the board
- attached to pin 13.
- 
- 
- created 2005
- by DojoDave 
- modified 17 Jun 2009
- by Tom Igoe
- 
-  http://www.arduino.cc/en/Tutorial/Button
+  Fade In Fade OUT
+  Increase and decrease intensity of an LED using only if constructor
+  This example code is part of the AUG-ROMA Arduino Course
+  This example code is in the public domain.
+  Author Marco Loche
  */
 
-// constants won't change. They're used here to 
-// set pin numbers:
-const int buttonPin = 2;     // the number of the pushbutton pin
-const int ledPin =  13;      // the number of the LED pin
+// Pin 9 is a PWM PIN
+const int led = 9;
+// Define the value of brightness of the led
+int intensity = 0; 
+boolean fadeIn = true;
 
-// variables will change:
-int buttonState = 0;         // variable for reading the pushbutton status
-
-void setup() {
-  // initialize the LED pin as an output:
-  pinMode(ledPin, OUTPUT);      
-  // initialize the pushbutton pin as an input:
-  pinMode(buttonPin, INPUT);     
+void setup() { 
+  pinMode(led, OUTPUT);     
 }
 
-void loop(){
-  // read the state of the pushbutton value:
-  buttonState = digitalRead(buttonPin);
-
-  // check if the pushbutton is pressed.
-  // if it is, the buttonState is HIGH:
-  if (buttonState == HIGH) {     
-    // turn LED on:    
-    digitalWrite(ledPin, HIGH);  
-  } 
-  else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW); 
+void loop() {
+  if(fadeIn){
+     //Fade in
+    analogWrite(led, intensity);
+    intensity++;   
+    delay(20);               
+  }
+  else{
+    //Fade Out
+    analogWrite(led, intensity);
+    intensity--;
+    delay(20);
+  }
+  
+  if( intensity == 255 ){
+    fadeIn = false;
+  }
+  if( intensity == 0){
+    fadeIn = true;
+    delay(500);
   }
 }
