@@ -20,13 +20,13 @@ void loop() {
   if(fadeIn){
      //Fade in
     analogWrite(led, intensity);
-    intensity++;   
+    intensity++; // same as `intensity = intensity + 1;`
     delay(20);               
   }
   else{
     //Fade Out
     analogWrite(led, intensity);
-    intensity--;
+    intensity--; // same as `intensity = intensity - 1;`
     delay(20);
   }
   

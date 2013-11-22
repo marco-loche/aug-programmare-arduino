@@ -8,22 +8,20 @@
 
 // Pin 9 is a PWM PIN
 const int led = 9;
-// Define the value of brightness of the led
-int intensity = 0;    
 
 void setup() {                
   pinMode(led, OUTPUT);     
 }
 
 void fadeIn() {
-  for (intensity = 0 ; intensity <= 255; intensity++) { 
+  for (int intensity = 0 ; intensity <= 255; intensity++) { 
     analogWrite(led, intensity);
     delay(20);                     
   } 
 }
 
 void fadeOut() {
-  for(intensity = 255 ; intensity >= 0; intensity--) {
+  for(int intensity = 255 ; intensity >= 0; intensity--) {
     analogWrite(led, intensity);
     delay(20);                      
   } 

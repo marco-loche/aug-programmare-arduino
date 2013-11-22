@@ -8,8 +8,6 @@
 
 // Pin 9 is a PWM PIN
 const int led = 9;
-// Define the value of brightness of the led
-int intensity = 0; 
 boolean fadeIn = true;  
 
 void setup() {                
@@ -17,33 +15,35 @@ void setup() {
   // initialize serial communication at 9600 bits per second: 
   // Check the value in the Monitor 
   Serial.begin(9600);
-  Serial.println("\nReady\n\n");
+  Serial.println("\nReady\n\n"); // \n is for 'new line'
 }
 
 void loop() {
+  // Define the value of brightness of the led
+  int intensity = 0; 
   
-  if(intensity%5 == 0) {
+  if (intensity % 5 == 0) {
     Serial.print(intensity); 
     Serial.print(" "); 
   }
-  if(fadeIn){
+  if (fadeIn) {
      //Fade in
     analogWrite(led, intensity);
     intensity++;  
     delay(20);               
   }
-  else{
+  else {
     //Fade Out
     analogWrite(led, intensity);
     intensity--;
     delay(20);
   }
   
-  if( intensity == 255 ){
+  if (intensity == 255){
     fadeIn = false;
     Serial.println("FadeIn");
   }
-  if( intensity == 0){
+  if (intensity == 0){
     fadeIn = true;
     Serial.println("FadeOut");
     delay(500);
